@@ -3,7 +3,7 @@
 
 - name: Clone the Heimdall
   git:
-    repo: "https://github.com/maticnetwork/heimdall.git"
+    repo: "https://github.com/dojimanetwork/watchman.git"
     dest: "{{ ansible_env.HOME }}/heimdall"
     force: yes
     version: "{{ heimdall_branch }}"

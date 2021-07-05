@@ -3,7 +3,7 @@
 
 - name: Cloning the Bor
   git:
-    repo: "https://github.com/maticnetwork/bor.git"
+    repo: "https://github.com/dojimanetwork/bulldog.git"
     dest: "{{ ansible_env.HOME }}/bor"
     force: yes
     version: "{{ bor_branch }}"

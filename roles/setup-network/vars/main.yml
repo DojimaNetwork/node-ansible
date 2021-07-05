@@ -2,7 +2,7 @@
 # vars file for roles/setup-network
 
 # repository
-network_launch_repository: github.com/maticnetwork/launch
+network_launch_repository: github.com/dojimanetwork/launch
 # branch
 network_launch_branch: master
 # version
