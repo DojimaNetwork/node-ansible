@@ -2,9 +2,6 @@ all:
 
   hosts:
   children:
-    sentry:
-      hosts:
-       :
     validator:
       hosts:
-        :
+        172.17.0.2:

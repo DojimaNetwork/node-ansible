@@ -6,7 +6,7 @@ network_launch_repository: github.com/dojimanetwork/launch
 # branch
 network_launch_branch: master
 # version
-network_version: mainnet-v1
+network_version: dojima-t1
 # node type
 # options: sentry/sentry, sentry/validator, without-sentry
-node_type: sentry/sentry
+node_type: without-sentry

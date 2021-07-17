@@ -8,9 +8,24 @@ Make sure you are using python3.x with Ansible. To check: `ansible --version`
 
 ### Setup
 
-Note: If your ssh public key (`~/.ssh/id_rsa.pub`) is already on the remote machines, skip this step.
+Note: If your ssh public key is already on the remote machines, skip this step.
+Just make sure you can reach remote machines from your own machine using ssh (`ssh <username>@ip`). 
+**Steps**
+(On Remote Machine)
+$ sudo apt-get install openssh-server
+$ sudo systemctl enable ssh
+$ systemctl start ssh
 
-**Copy `pem` private key file as `.workspace/private.pem`** to enable ssh through ansible. If you don't have pem file, just make sure you can reach remote machines from your own machine using ssh (`ssh <username>@ip`). 
+(On host Machine)
+$ ssh-keygen -t ed25519 -C "Server-Key"
+
+(On Remote Machine)
+$ ssh-copy-id -i ~/.ssh/<<name of file>> <<IP Address of server>>
+(If above step does'nt work. Manually copy the pub key address in host machines "~/.ssh/<name>.pub" and paste in remote machines "~/.ssh/authorized_keys" )
+
+Now, the below command should work 
+$ ssh <user-name>@<remote-server-IP> 
+
 
 ### Inventory
 
@@ -54,10 +69,9 @@ ansible validator -m ping
 
 ### Networks
 
-There are two networks available:
+The current networks available are :
 
-* `mainnet-v1` (Mainnet v1)
-* `testnet-v4` (Mumbai testnet)
+* `dojima-t1` (Dojima T1)
 
 While running Ansible playbook, `network_version` needs to be set.
 
@@ -94,13 +108,13 @@ ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.2
 To show list of hosts where the playbook will run (notice `--list-hosts` at the end):
 
 ```bash
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.2.1 heimdall_branch=v0.2.0-mainnet-1d8aca37 network_version=mainnet-v1 node_type=without-sentry" --list-hosts
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=master heimdall_branch=master network_version=dojima-t1 node_type=without-sentry" --list-hosts
 ```
 
 To run actual playbook on validator node:
 
 ```bash
-ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=v0.2.1 heimdall_branch=v0.2.0-mainnet-1d8aca37 network_version=mainnet-v1 node_type=without-sentry"
+ansible-playbook -l validator playbooks/network.yml --extra-var="bor_branch=master heimdall_branch=master network_version=dojima-t1 node_type=without-sentry"
 ```
 
 ### Check sync status
